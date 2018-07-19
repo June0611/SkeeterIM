@@ -1,0 +1,26 @@
+syntax = "proto3";
+package chat.proto;
+
+
+message SendMessageRequest {
+     string access_token = 1;
+     string from = 2;
+     string to = 3;
+     string text = 4;
+     string topic = 5;
+}
+
+
+message SendMessageResponse {
+
+    enum Error {
+        ERR_OK = 0;
+        ERR_SYS = -1;
+    }
+
+     int32 err_code = 1;
+     string err_msg = 2;
+     string from = 3;
+     string text = 4;
+     string topic = 5;
+}
