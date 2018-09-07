@@ -7,7 +7,6 @@
 
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/stubs/port.h>
-#include <google/protobuf/stubs/once.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/wire_format_lite_inl.h>
 #include <google/protobuf/descriptor.h>
@@ -19,6 +18,7 @@
 #include "third_party/protobuf/version.h"
 #endif
 // @@protoc_insertion_point(includes)
+
 namespace chat {
 namespace proto {
 class SendMessageRequestDefaultTypeInternal {
@@ -34,14 +34,9 @@ class SendMessageResponseDefaultTypeInternal {
 }  // namespace proto
 }  // namespace chat
 namespace protobuf_chat_2eproto {
-void InitDefaultsSendMessageRequestImpl() {
+static void InitDefaultsSendMessageRequest() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-  ::google::protobuf::internal::InitProtobufDefaultsForceUnique();
-#else
-  ::google::protobuf::internal::InitProtobufDefaults();
-#endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
   {
     void* ptr = &::chat::proto::_SendMessageRequest_default_instance_;
     new (ptr) ::chat::proto::SendMessageRequest();
@@ -50,19 +45,12 @@ void InitDefaultsSendMessageRequestImpl() {
   ::chat::proto::SendMessageRequest::InitAsDefaultInstance();
 }
 
-void InitDefaultsSendMessageRequest() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsSendMessageRequestImpl);
-}
+::google::protobuf::internal::SCCInfo<0> scc_info_SendMessageRequest =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSendMessageRequest}, {}};
 
-void InitDefaultsSendMessageResponseImpl() {
+static void InitDefaultsSendMessageResponse() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-  ::google::protobuf::internal::InitProtobufDefaultsForceUnique();
-#else
-  ::google::protobuf::internal::InitProtobufDefaults();
-#endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
   {
     void* ptr = &::chat::proto::_SendMessageResponse_default_instance_;
     new (ptr) ::chat::proto::SendMessageResponse();
@@ -71,9 +59,12 @@ void InitDefaultsSendMessageResponseImpl() {
   ::chat::proto::SendMessageResponse::InitAsDefaultInstance();
 }
 
-void InitDefaultsSendMessageResponse() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsSendMessageResponseImpl);
+::google::protobuf::internal::SCCInfo<0> scc_info_SendMessageResponse =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsSendMessageResponse}, {}};
+
+void InitDefaults() {
+  ::google::protobuf::internal::InitSCC(&scc_info_SendMessageRequest.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_SendMessageResponse.base);
 }
 
 ::google::protobuf::Metadata file_level_metadata[2];
@@ -113,15 +104,14 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
 
 void protobuf_AssignDescriptors() {
   AddDescriptors();
-  ::google::protobuf::MessageFactory* factory = NULL;
   AssignDescriptors(
-      "chat.proto", schemas, file_default_instances, TableStruct::offsets, factory,
+      "chat.proto", schemas, file_default_instances, TableStruct::offsets,
       file_level_metadata, file_level_enum_descriptors, NULL);
 }
 
 void protobuf_AssignDescriptorsOnce() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &protobuf_AssignDescriptors);
+  static ::google::protobuf::internal::once_flag once;
+  ::google::protobuf::internal::call_once(once, protobuf_AssignDescriptors);
 }
 
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
@@ -148,8 +138,8 @@ void AddDescriptorsImpl() {
 }
 
 void AddDescriptors() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &AddDescriptorsImpl);
+  static ::google::protobuf::internal::once_flag once;
+  ::google::protobuf::internal::call_once(once, AddDescriptorsImpl);
 }
 // Force AddDescriptors() to be called at dynamic initialization time.
 struct StaticDescriptorInitializer {
@@ -196,16 +186,14 @@ const int SendMessageRequest::kTopicFieldNumber;
 
 SendMessageRequest::SendMessageRequest()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
-    ::protobuf_chat_2eproto::InitDefaultsSendMessageRequest();
-  }
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_chat_2eproto::scc_info_SendMessageRequest.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:chat.proto.SendMessageRequest)
 }
 SendMessageRequest::SendMessageRequest(const SendMessageRequest& from)
   : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
-      _cached_size_(0) {
+      _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   access_token_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.access_token().size() > 0) {
@@ -236,7 +224,6 @@ void SendMessageRequest::SharedCtor() {
   to_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   text_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   topic_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  _cached_size_ = 0;
 }
 
 SendMessageRequest::~SendMessageRequest() {
@@ -253,9 +240,7 @@ void SendMessageRequest::SharedDtor() {
 }
 
 void SendMessageRequest::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  _cached_size_.Set(size);
 }
 const ::google::protobuf::Descriptor* SendMessageRequest::descriptor() {
   ::protobuf_chat_2eproto::protobuf_AssignDescriptorsOnce();
@@ -263,17 +248,10 @@ const ::google::protobuf::Descriptor* SendMessageRequest::descriptor() {
 }
 
 const SendMessageRequest& SendMessageRequest::default_instance() {
-  ::protobuf_chat_2eproto::InitDefaultsSendMessageRequest();
+  ::google::protobuf::internal::InitSCC(&protobuf_chat_2eproto::scc_info_SendMessageRequest.base);
   return *internal_default_instance();
 }
 
-SendMessageRequest* SendMessageRequest::New(::google::protobuf::Arena* arena) const {
-  SendMessageRequest* n = new SendMessageRequest;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
-}
 
 void SendMessageRequest::Clear() {
 // @@protoc_insertion_point(message_clear_start:chat.proto.SendMessageRequest)
@@ -295,7 +273,7 @@ bool SendMessageRequest::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:chat.proto.SendMessageRequest)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -577,9 +555,7 @@ size_t SendMessageRequest::ByteSizeLong() const {
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = cached_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  SetCachedSize(cached_size);
   return total_size;
 }
 
@@ -651,13 +627,17 @@ void SendMessageRequest::Swap(SendMessageRequest* other) {
 }
 void SendMessageRequest::InternalSwap(SendMessageRequest* other) {
   using std::swap;
-  access_token_.Swap(&other->access_token_);
-  from_.Swap(&other->from_);
-  to_.Swap(&other->to_);
-  text_.Swap(&other->text_);
-  topic_.Swap(&other->topic_);
+  access_token_.Swap(&other->access_token_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  from_.Swap(&other->from_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  to_.Swap(&other->to_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  text_.Swap(&other->text_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  topic_.Swap(&other->topic_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata SendMessageRequest::GetMetadata() const {
@@ -680,16 +660,14 @@ const int SendMessageResponse::kTopicFieldNumber;
 
 SendMessageResponse::SendMessageResponse()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
-    ::protobuf_chat_2eproto::InitDefaultsSendMessageResponse();
-  }
+  ::google::protobuf::internal::InitSCC(
+      &protobuf_chat_2eproto::scc_info_SendMessageResponse.base);
   SharedCtor();
   // @@protoc_insertion_point(constructor:chat.proto.SendMessageResponse)
 }
 SendMessageResponse::SendMessageResponse(const SendMessageResponse& from)
   : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
-      _cached_size_(0) {
+      _internal_metadata_(NULL) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   err_msg_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.err_msg().size() > 0) {
@@ -717,7 +695,6 @@ void SendMessageResponse::SharedCtor() {
   text_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   topic_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   err_code_ = 0;
-  _cached_size_ = 0;
 }
 
 SendMessageResponse::~SendMessageResponse() {
@@ -733,9 +710,7 @@ void SendMessageResponse::SharedDtor() {
 }
 
 void SendMessageResponse::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  _cached_size_.Set(size);
 }
 const ::google::protobuf::Descriptor* SendMessageResponse::descriptor() {
   ::protobuf_chat_2eproto::protobuf_AssignDescriptorsOnce();
@@ -743,17 +718,10 @@ const ::google::protobuf::Descriptor* SendMessageResponse::descriptor() {
 }
 
 const SendMessageResponse& SendMessageResponse::default_instance() {
-  ::protobuf_chat_2eproto::InitDefaultsSendMessageResponse();
+  ::google::protobuf::internal::InitSCC(&protobuf_chat_2eproto::scc_info_SendMessageResponse.base);
   return *internal_default_instance();
 }
 
-SendMessageResponse* SendMessageResponse::New(::google::protobuf::Arena* arena) const {
-  SendMessageResponse* n = new SendMessageResponse;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
-}
 
 void SendMessageResponse::Clear() {
 // @@protoc_insertion_point(message_clear_start:chat.proto.SendMessageResponse)
@@ -775,7 +743,7 @@ bool SendMessageResponse::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:chat.proto.SendMessageResponse)
   for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
@@ -1044,9 +1012,7 @@ size_t SendMessageResponse::ByteSizeLong() const {
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = cached_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  SetCachedSize(cached_size);
   return total_size;
 }
 
@@ -1117,13 +1083,16 @@ void SendMessageResponse::Swap(SendMessageResponse* other) {
 }
 void SendMessageResponse::InternalSwap(SendMessageResponse* other) {
   using std::swap;
-  err_msg_.Swap(&other->err_msg_);
-  from_.Swap(&other->from_);
-  text_.Swap(&other->text_);
-  topic_.Swap(&other->topic_);
+  err_msg_.Swap(&other->err_msg_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  from_.Swap(&other->from_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  text_.Swap(&other->text_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  topic_.Swap(&other->topic_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
   swap(err_code_, other->err_code_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(_cached_size_, other->_cached_size_);
 }
 
 ::google::protobuf::Metadata SendMessageResponse::GetMetadata() const {
@@ -1135,5 +1104,15 @@ void SendMessageResponse::InternalSwap(SendMessageResponse* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace proto
 }  // namespace chat
+namespace google {
+namespace protobuf {
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::chat::proto::SendMessageRequest* Arena::CreateMaybeMessage< ::chat::proto::SendMessageRequest >(Arena* arena) {
+  return Arena::CreateInternal< ::chat::proto::SendMessageRequest >(arena);
+}
+template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::chat::proto::SendMessageResponse* Arena::CreateMaybeMessage< ::chat::proto::SendMessageResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::chat::proto::SendMessageResponse >(arena);
+}
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
