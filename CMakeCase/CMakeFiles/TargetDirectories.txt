@@ -1,0 +1,3 @@
+/Users/skeeskeeterter/Desktop/Personal/Project/SkeeterIM/CMakeCase/CMakeFiles/rebuild_cache.dir
+/Users/skeeskeeterter/Desktop/Personal/Project/SkeeterIM/CMakeCase/CMakeFiles/edit_cache.dir
+/Users/skeeskeeterter/Desktop/Personal/Project/SkeeterIM/CMakeCase/CMakeFiles/CMakeCase.dir
